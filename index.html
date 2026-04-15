@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Norveç Schengen Vize Rehberi</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --surface2: #232636;
+      --border: #2e3150;
+      --accent: #4f8ef7;
+      --accent2: #7c6af7;
+      --green: #22c55e;
+      --yellow: #f59e0b;
+      --red: #ef4444;
+      --text: #e2e8f0;
+      --muted: #8892a4;
+      --radius: 12px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ─── Header ─── */
+    .header {
+      background: linear-gradient(135deg, #1e2a4a 0%, #1a1d27 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 32px 24px 28px;
+      text-align: center;
+    }
+    .header .flag { font-size: 48px; margin-bottom: 12px; }
+    .header h1 { font-size: 26px; font-weight: 700; color: #fff; }
+    .header p { color: var(--muted); margin-top: 6px; font-size: 14px; }
+    .badges { display: flex; gap: 8px; justify-content: center; margin-top: 14px; flex-wrap: wrap; }
+    .badge {
+      padding: 4px 12px; border-radius: 99px; font-size: 12px; font-weight: 600;
+      background: rgba(79,142,247,.15); color: var(--accent); border: 1px solid rgba(79,142,247,.3);
+    }
+    .badge.green { background: rgba(34,197,94,.12); color: var(--green); border-color: rgba(34,197,94,.3); }
+    .badge.yellow { background: rgba(245,158,11,.12); color: var(--yellow); border-color: rgba(245,158,11,.3); }
+
+    /* ─── Layout ─── */
+    .container { max-width: 820px; margin: 0 auto; padding: 24px 16px 60px; }
+
+    /* ─── Progress Bar ─── */
+    .progress-wrap {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .progress-label { font-size: 13px; color: var(--muted); margin-bottom: 10px; display: flex; justify-content: space-between; }
+    .progress-bar-bg { background: var(--surface2); border-radius: 99px; height: 8px; overflow: hidden; }
+    .progress-bar-fill {
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      height: 100%; border-radius: 99px;
+      transition: width .4s ease;
+      width: 0%;
+    }
+    .progress-count { font-weight: 700; color: var(--accent); }
+
+    /* ─── Accordion ─── */
+    .accordion { display: flex; flex-direction: column; gap: 12px; }
+    .accordion-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: border-color .2s;
+    }
+    .accordion-item.open { border-color: var(--accent); }
+    .accordion-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 20px; cursor: pointer; user-select: none;
+      transition: background .15s;
+    }
+    .accordion-header:hover { background: var(--surface2); }
+    .accordion-left { display: flex; align-items: center; gap: 14px; }
+    .accordion-icon { font-size: 22px; width: 36px; text-align: center; }
+    .accordion-title { font-size: 15px; font-weight: 600; }
+    .accordion-subtitle { font-size: 12px; color: var(--muted); margin-top: 2px; }
+    .chevron {
+      color: var(--muted); transition: transform .25s;
+      font-style: normal; font-size: 18px; line-height: 1;
+    }
+    .accordion-item.open .chevron { transform: rotate(180deg); }
+    .accordion-body { display: none; padding: 0 20px 20px; }
+    .accordion-item.open .accordion-body { display: block; }
+
+    /* ─── Checklist ─── */
+    .checklist { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+    .checklist li {
+      display: flex; align-items: flex-start; gap: 12px;
+      background: var(--surface2); border-radius: 8px; padding: 12px 14px;
+      border: 1px solid transparent; transition: border-color .15s, opacity .15s;
+      cursor: pointer;
+    }
+    .checklist li:hover { border-color: var(--border); }
+    .checklist li.checked { opacity: 0.55; }
+    .checklist li.checked .check-label { text-decoration: line-through; color: var(--muted); }
+    .check-box {
+      width: 20px; height: 20px; min-width: 20px; border-radius: 6px;
+      border: 2px solid var(--border); display: flex; align-items: center;
+      justify-content: center; margin-top: 1px; transition: all .15s; background: transparent;
+    }
+    .checklist li.checked .check-box { background: var(--green); border-color: var(--green); }
+    .check-tick { display: none; color: #fff; font-size: 13px; font-weight: 700; }
+    .checklist li.checked .check-tick { display: block; }
+    .check-label { font-size: 14px; flex: 1; }
+    .check-note { font-size: 12px; color: var(--muted); margin-top: 3px; }
+    .tag {
+      font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 99px;
+      background: rgba(239,68,68,.15); color: var(--red); border: 1px solid rgba(239,68,68,.25);
+      white-space: nowrap;
+    }
+    .tag.blue { background: rgba(79,142,247,.12); color: var(--accent); border-color: rgba(79,142,247,.3); }
+    .tag.green { background: rgba(34,197,94,.12); color: var(--green); border-color: rgba(34,197,94,.3); }
+
+    /* ─── Calculator ─── */
+    .calc-wrap { margin-top: 4px; }
+    .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+    @media(max-width:500px){ .calc-grid { grid-template-columns: 1fr; } }
+    .calc-field label { display: block; font-size: 12px; color: var(--muted); margin-bottom: 6px; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; }
+    .calc-field input {
+      width: 100%; background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 8px; padding: 10px 14px; color: var(--text); font-size: 16px;
+      outline: none; transition: border-color .15s;
+    }
+    .calc-field input:focus { border-color: var(--accent); }
+    .calc-results { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 10px; }
+    @media(max-width:600px){ .calc-results { grid-template-columns: 1fr 1fr; } }
+    @media(max-width:380px){ .calc-results { grid-template-columns: 1fr; } }
+    .calc-result-card {
+      background: var(--surface2); border-radius: 10px; padding: 14px;
+      border: 1px solid var(--border); text-align: center;
+    }
+    .calc-result-card .label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 6px; }
+    .calc-result-card .value { font-size: 20px; font-weight: 700; }
+    .calc-result-card.highlight { border-color: var(--accent); background: rgba(79,142,247,.07); }
+    .calc-result-card.highlight .value { color: var(--accent); }
+    .calc-result-card.rec { border-color: var(--green); background: rgba(34,197,94,.07); }
+    .calc-result-card.rec .value { color: var(--green); }
+    .calc-note { margin-top: 12px; font-size: 12px; color: var(--muted); background: var(--surface2); border-radius: 8px; padding: 10px 12px; }
+
+    /* ─── Cascade ─── */
+    .cascade-card {
+      background: linear-gradient(135deg, rgba(124,106,247,.12), rgba(79,142,247,.08));
+      border: 1px solid rgba(124,106,247,.35);
+      border-radius: var(--radius); padding: 20px; margin-bottom: 16px;
+    }
+    .cascade-card h3 { font-size: 15px; color: #a89ef9; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+    .cascade-status { display: flex; align-items: center; gap: 10px; padding: 12px; background: rgba(34,197,94,.1); border-radius: 8px; border: 1px solid rgba(34,197,94,.25); }
+    .cascade-status .icon { font-size: 24px; }
+    .cascade-status .text strong { color: var(--green); font-size: 14px; display: block; }
+    .cascade-status .text span { color: var(--muted); font-size: 12px; }
+    .cascade-steps { display: flex; flex-direction: column; gap: 8px; margin-top: 14px; }
+    .cascade-step {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border);
+      background: var(--surface2); font-size: 13px;
+    }
+    .cascade-step.active { border-color: rgba(124,106,247,.5); background: rgba(124,106,247,.1); color: #a89ef9; font-weight: 600; }
+    .cascade-step .step-num { width: 24px; height: 24px; border-radius: 99px; background: var(--border); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; }
+    .cascade-step.active .step-num { background: var(--accent2); color: #fff; }
+    .cascade-step.done .step-num { background: var(--green); color: #fff; }
+    .cascade-step.done { border-color: rgba(34,197,94,.3); color: var(--muted); }
+
+    /* ─── Cover Letter ─── */
+    .cover-letter-wrap { position: relative; margin-top: 4px; }
+    .cover-letter-box {
+      background: var(--surface2); border: 1px solid var(--border); border-radius: 10px;
+      padding: 20px; font-size: 13px; line-height: 1.8; white-space: pre-wrap;
+      font-family: 'Georgia', serif; color: #cbd5e1; max-height: 420px; overflow-y: auto;
+    }
+    .cover-highlight { color: #f9b847; font-weight: 600; }
+    .copy-btn {
+      margin-top: 10px; padding: 10px 20px; background: var(--accent2); color: #fff;
+      border: none; border-radius: 8px; cursor: pointer; font-size: 13px; font-weight: 600;
+      transition: opacity .15s; width: 100%;
+    }
+    .copy-btn:hover { opacity: .85; }
+    .copy-btn.copied { background: var(--green); }
+
+    /* ─── Info Sections ─── */
+    .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 4px; }
+    @media(max-width:500px){ .info-grid { grid-template-columns: 1fr; } }
+    .info-card {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 10px; padding: 14px;
+    }
+    .info-card .ic-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 6px; }
+    .info-card .ic-value { font-size: 18px; font-weight: 700; color: var(--text); }
+    .info-card .ic-sub { font-size: 12px; color: var(--muted); margin-top: 3px; }
+    .info-card.accent { border-color: rgba(79,142,247,.3); }
+    .info-card.accent .ic-value { color: var(--accent); }
+    .info-card.warn { border-color: rgba(245,158,11,.3); }
+    .info-card.warn .ic-value { color: var(--yellow); }
+
+    .timeline { display: flex; flex-direction: column; gap: 0; margin-top: 12px; }
+    .tl-item { display: flex; gap: 14px; padding-bottom: 16px; position: relative; }
+    .tl-left { display: flex; flex-direction: column; align-items: center; }
+    .tl-dot { width: 12px; height: 12px; border-radius: 99px; background: var(--accent); min-width: 12px; margin-top: 4px; }
+    .tl-line { width: 2px; flex: 1; background: var(--border); margin-top: 4px; }
+    .tl-item:last-child .tl-line { display: none; }
+    .tl-content .tl-title { font-size: 13px; font-weight: 600; }
+    .tl-content .tl-dur { font-size: 12px; color: var(--accent); font-weight: 700; margin-top: 2px; }
+    .tl-content .tl-note { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+    /* ─── Warning Cards ─── */
+    .warn-list { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+    .warn-card {
+      display: flex; gap: 12px; background: var(--surface2); border-radius: 10px;
+      padding: 14px; border-left: 3px solid var(--red);
+    }
+    .warn-card.yellow { border-left-color: var(--yellow); }
+    .warn-card.green { border-left-color: var(--green); }
+    .warn-card .wi { font-size: 20px; }
+    .warn-card .wt { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+    .warn-card .wd { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+    /* ─── Footer ─── */
+    .footer { text-align: center; padding: 24px; color: var(--muted); font-size: 12px; border-top: 1px solid var(--border); margin-top: 32px; }
+
+    hr { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
+    .section-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin: 16px 0 10px; }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <div class="flag">🇳🇴</div>
+  <h1>Norveç Schengen Vize Rehberi</h1>
+  <p>VFS Global başvurusu için kapsamlı rehber — 2025/2026</p>
+  <div class="badges">
+    <span class="badge">Schengen</span>
+    <span class="badge green">Cascade Hakkı ✓</span>
+    <span class="badge yellow">Türk Vatandaşı</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- Progress -->
+  <div class="progress-wrap">
+    <div class="progress-label">
+      <span>Kontrol Listesi İlerleme</span>
+      <span><span class="progress-count" id="doneCount">0</span> / <span id="totalCount">0</span> tamamlandı</span>
+    </div>
+    <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill"></div></div>
+  </div>
+
+  <div class="accordion">
+
+    <!-- ─── 1. Belgeler ─── -->
+    <div class="accordion-item open" id="sec-docs">
+      <div class="accordion-header" onclick="toggleSection('sec-docs')">
+        <div class="accordion-left">
+          <div class="accordion-icon">📋</div>
+          <div>
+            <div class="accordion-title">Gerekli Belgeler</div>
+            <div class="accordion-subtitle">Tıkla → tamamlandı olarak işaretle</div>
+          </div>
+        </div>
+        <i class="chevron">⌄</i>
+      </div>
+      <div class="accordion-body">
+        <div class="section-title">Zorunlu — Herkes</div>
+        <ul class="checklist" id="checklist">
+          <li onclick="toggleCheck(this)" data-id="c1">
+            <div class="check-box"><span class="check-tick">✓</span></div>
+            <div>
+              <div class="check-label">Geçerli pasaport</div>
+              <div class="check-note">Son 10 yıl içinde çıkarılmış · Dönüşten en az 3 ay fazla geçerli · Boş en az 2 sayfa</div>
+            </div>
+            <span class="tag">Zorunlu</span>
+          </li>
+          <li onclick="toggleCheck(this)" data-id="c2">
+            <div class="check-box"><span class="check-tick">✓</span></div>
+            <div>
+              <div class="check-label">Biyometrik fotoğraf</div>
+              <div class="check-note">35×45mm · Renkli · Son 6 ay içinde çekilmiş · Beyaz arka plan</div>
+            </div>
+            <span class="tag">Zorunlu</span>
+          </li>
+          <li onclick="toggleCheck(this)" data-id="c3">
+            <div class="check-box"><span class="check-tick">✓</span></div>
+            <div>
+              <div class="check-label">Schengen başvuru formu (imzalı)</div>
+              <div class="check-note">UDI portalından doldurulup çıktısı alınmış ve imzalanmış</div>
+            </div>
+            <span class="tag">Zorunlu</span>
+          </li>
+          <li onclick="toggleCheck(this)" data-id="c4">
+            <div class="check-box"><span class="check-tick">✓</span></div>
+            <div>
+              <div class="check-label">Seyahat sağlık sigortası</div>
+              <div class="check-note">Min. €30.000 tıbbi kapsam · Tüm Schengen bölgesi geçerli · Başvuru öncesi satın alınmalı</div>
+            </div>
+            <span class="tag">Zorunlu</span>
+          </li>
+          <li onclick="toggleCheck(this)" data-id="c5">
+            <div class="check-box"><span class="check-tick">✓</span></div>
+            <div>
+              <div class="check-label">Banka ekstreleri (3–6 ay)</div>
+              <div class="check-note">Banka kaşeli orijinal · A4 format · Son 1 ay içinde çıkarılmış · Düzenli maaş yatışları görünmeli</div>
+            </div>
+            <span class="tag">Zorunlu</span>
+          </li>
+          <li onclick="toggleCheck(this)" data-id="c6">
+            <div class="check-box"><span class="check-tick">✓</span></div>
+            <div>
+              <div class="check-label">Nüfus kayıt örneği</div>
+              <div class="check-note">E-devlet'ten QR kodlu · 6 aydan eski olmamalı</div>
+            </div>
+            <span class="tag">Zorunlu</span>
+          </li>
+          <li onclick="toggleCheck(this)" data-id="c7">
+            <div class="check-box"><span class="check-tick">✓</span></div>
+            <div>
+              <div class="check-label">Cover letter (kapak mektubu)</div>
+              <div class="check-note">İngilizce · Maks. 1 sayfa · Cascade paragrafı dahil</div>
+            </div>
+            <span class="tag">Zorunlu</span>
+          </li>
+          <li onclick="toggleCheck(this)" data-id="c8">
+            <div class="check-box"><span class="check-tick">✓</span></div>
+            <div>
+              <div class="check-label">Konaklama rezervasyonu</div>
+              <div class="check-note">Tüm konaklama süresi · Adın pasaportla birebir · İptal edilebilir olmalı</div>
+            </div>
+            <span class="tag">Zorunlu</span>
+          </li>
+          <li onclick="toggleCheck(this)" data-id="c9">
+            <div class="check-box"><span class="check-tick">✓</span></div>
+            <div>
+              <div class="check-label">Uçuş rezervasyonu</div>
+              <div class="check-note">Bilet almak zorunda değilsin · Rezervasyon onayı yeterli · Giriş-çıkış tarihleri belirtilmeli</div>
+            </div>
+            <span class="tag blue">Rezervasyon OK</span>
+          </li>
+          <li onclick="toggleCheck(this)" data-id="c10">
+            <div class="check-box"><span class="check-tick">✓</span></div>
+            <div>
+              <div class="check-label">Vize ücret ödemesi</div>
+              <div class="check-note">Yetişkin: €90 · VFS servis ücreti: €10 (nakit, euro)</div>
+            </div>
+            <span class="tag">Zorunlu</span>
+          </li>
+
+          <div class="section-title" style="margin-top:16px">Çalışan İçin Ek Belgeler</div>
+          <li onclick="toggleCheck(this)" data-id="c11">
+            <div class="check-box"><span class="check-tick">✓</span></div>
+            <div>
+              <div class="check-label">İşveren mektubu</div>
+              <div class="check-note">Pozisyon, maaş ve izin onayı belirtilmeli · Kaşe ve imzalı</div>
+            </div>
+            <span class="tag blue">Çalışan</span>
+          </li>
+          <li onclick="toggleCheck(this)" data-id="c12">
+            <div class="check-box"><span class="check-tick">✓</span></div>
+            <div>
+              <div class="check-label">Son 3 aylık maaş bordroları</div>
+              <div class="check-note">Orijinal veya kaşeli fotokopi</div>
+            </div>
+            <span class="tag blue">Çalışan</span>
+          </li>
+
+          <div class="section-title" style="margin-top:16px">Cascade İçin Ek Belge</div>
+          <li onclick="toggleCheck(this)" data-id="c13">
+            <div class="check-box"><span class="check-tick">✓</span></div>
+            <div>
+              <div class="check-label">Önceki Schengen vizesi fotokopisi</div>
+              <div class="check-note">İsviçre Schengen vizesi (Aralık 2025) · Pasaportun ilgili sayfaları</div>
+            </div>
+            <span class="tag green">Cascade</span>
+          </li>
+          <li onclick="toggleCheck(this)" data-id="c14">
+            <div class="check-box"><span class="check-tick">✓</span></div>
+            <div>
+              <div class="check-label">Önceki giriş-çıkış damgaları fotokopisi</div>
+              <div class="check-note">İsviçre'ye giriş-çıkış yaptığını kanıtlayan pasaport sayfaları</div>
+            </div>
+            <span class="tag green">Cascade</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ─── 2. Finansal Hesap Makinesi ─── -->
+    <div class="accordion-item" id="sec-finance">
+      <div class="accordion-header" onclick="toggleSection('sec-finance')">
+        <div class="accordion-left">
+          <div class="accordion-icon">💰</div>
+          <div>
+            <div class="accordion-title">Finansal Hesap Makinesi</div>
+            <div class="accordion-subtitle">Günlük minimum: NOK 500/kişi/gün</div>
+          </div>
+        </div>
+        <i class="chevron">⌄</i>
+      </div>
+      <div class="accordion-body">
+        <div class="calc-wrap">
+          <div class="calc-grid">
+            <div class="calc-field">
+              <label>Kaç gün kalacaksın?</label>
+              <input type="number" id="calcDays" value="10" min="1" max="90" oninput="calcFinance()" />
+            </div>
+            <div class="calc-field">
+              <label>Kişi sayısı</label>
+              <input type="number" id="calcPeople" value="1" min="1" max="10" oninput="calcFinance()" />
+            </div>
+          </div>
+          <div class="calc-results">
+            <div class="calc-result-card">
+              <div class="label">Minimum (NOK)</div>
+              <div class="value" id="resMin">—</div>
+            </div>
+            <div class="calc-result-card highlight">
+              <div class="label">Tavsiye Edilen (NOK)</div>
+              <div class="value" id="resRec">—</div>
+            </div>
+            <div class="calc-result-card rec">
+              <div class="label">≈ Euro (tahmin)</div>
+              <div class="value" id="resEur">—</div>
+            </div>
+            <div class="calc-result-card" style="border-color:rgba(245,158,11,.3);background:rgba(245,158,11,.07)">
+              <div class="label">≈ TL (tahmin)</div>
+              <div class="value" id="resTry" style="color:var(--yellow)">—</div>
+            </div>
+          </div>
+          <div class="calc-note">
+            💡 Hesabında görünmesi gereken minimum <strong id="resMinInline">—</strong> NOK. Tavsiye edilen ise minimumun <strong>%150'si</strong> olan <strong id="resRecInline">—</strong> NOK. <span id="calcRateNote">TL ve Euro değerleri güncel kur üzerinden hesaplanmıştır (1 EUR = 51,47 TL · 1 NOK = 4,73 TL · 15 Nis 2026).</span> Büyükelçilik son 3–6 aylık ortalama bakiyeni değerlendirir — ani büyük yatışlardan kaçın.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── 3. Bekleme Süreleri ─── -->
+    <div class="accordion-item" id="sec-timing">
+      <div class="accordion-header" onclick="toggleSection('sec-timing')">
+        <div class="accordion-left">
+          <div class="accordion-icon">⏱️</div>
+          <div>
+            <div class="accordion-title">Bekleme Süreleri</div>
+            <div class="accordion-subtitle">Toplam ~3–4 hafta hesapla</div>
+          </div>
+        </div>
+        <i class="chevron">⌄</i>
+      </div>
+      <div class="accordion-body">
+        <div class="info-grid">
+          <div class="info-card accent">
+            <div class="ic-label">Karar süresi</div>
+            <div class="ic-value">15 takvim günü</div>
+            <div class="ic-sub">Büyükelçiye ulaştıktan sonra</div>
+          </div>
+          <div class="info-card warn">
+            <div class="ic-label">VFS transit</div>
+            <div class="ic-value">+4 iş günü</div>
+            <div class="ic-sub">Gidiş-geliş toplam</div>
+          </div>
+          <div class="info-card">
+            <div class="ic-label">Toplam beklenti</div>
+            <div class="ic-value">~3–4 hafta</div>
+            <div class="ic-sub">Randevudan itibaren</div>
+          </div>
+          <div class="info-card">
+            <div class="ic-label">Ne zaman başvur?</div>
+            <div class="ic-value">6–8 hafta önce</div>
+            <div class="ic-sub">Red sonrası tekrar için yeterli süre</div>
+          </div>
+        </div>
+        <div class="timeline" style="margin-top:20px">
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div class="tl-content">
+              <div class="tl-title">VFS randevusu &amp; belge teslimi</div>
+              <div class="tl-note">Parmak izi alınır, pasaport bırakılır</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div class="tl-content">
+              <div class="tl-title">VFS → Büyükelçi transferi</div>
+              <div class="tl-dur">+2–3 iş günü</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div class="tl-content">
+              <div class="tl-title">Büyükelçilik değerlendirmesi</div>
+              <div class="tl-dur">+15 takvim günü</div>
+              <div class="tl-note">Standart süre, yoğun dönemde uzayabilir</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div class="tl-content">
+              <div class="tl-title">Büyükelçi → VFS geri transferi</div>
+              <div class="tl-dur">+1–2 iş günü</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot" style="background:var(--green)"></div></div>
+            <div class="tl-content">
+              <div class="tl-title">Pasaport teslim alınır (VFS'ten)</div>
+              <div class="tl-note">Online takip: vize.vfsglobal.com</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── 4. Cascade Kuralı ─── -->
+    <div class="accordion-item" id="sec-cascade">
+      <div class="accordion-header" onclick="toggleSection('sec-cascade')">
+        <div class="accordion-left">
+          <div class="accordion-icon">⚡</div>
+          <div>
+            <div class="accordion-title">Schengen Cascade Kuralı</div>
+            <div class="accordion-subtitle">Visa Code Madde 24(2) — 1 yıllık MEV talep hakkın var</div>
+          </div>
+        </div>
+        <i class="chevron">⌄</i>
+      </div>
+      <div class="accordion-body">
+        <div class="cascade-card">
+          <h3>⚡ Cascade Uygunluk Durumu</h3>
+          <div class="cascade-status">
+            <div class="icon">✅</div>
+            <div class="text">
+              <strong>Cascade hakkın mevcut!</strong>
+              <span id="cascadeStatusText">İsviçre Schengen vizesi (Aralık 2025 · 20 gün geçerlilik · 7 gün kalış hakkı) geçerli kullanıldıysa → 1 yıl çoklu giriş vizesi talep edebilirsin</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-title">Cascade İlerlemesi</div>
+        <div class="cascade-steps">
+          <div class="cascade-step done">
+            <div class="step-num">✓</div>
+            <span id="cascadeStep1Text"><strong>1. Schengen Vizesi</strong> — İsviçre (Aralık 2025) · Tamamlandı</span>
+          </div>
+          <div class="cascade-step active">
+            <div class="step-num">2</div>
+            <span><strong>Şu an:</strong> Norveç başvurusu → <strong>1 Yıllık Çoklu Giriş (MEV)</strong> talep edebilirsin</span>
+          </div>
+          <div class="cascade-step">
+            <div class="step-num">3</div>
+            <span>Norveç vizesini usulünce kullanırsan → <strong>2 Yıllık MEV</strong></span>
+          </div>
+          <div class="cascade-step">
+            <div class="step-num">4</div>
+            <span>Bir sonraki iyi kullanım → <strong>5 Yıllık MEV</strong></span>
+          </div>
+        </div>
+
+        <div class="calc-note" style="margin-top:14px">
+          <strong>Önemli notlar:</strong><br>
+          • Cascade, farklı Schengen ülkeleri arasında geçerlidir (İsviçre → Norveç ✓)<br>
+          • "Usulünce kullanma" = vize süresini aşmama, kayıt dışı çalışmama, koşullara uyma<br>
+          • Uzun geçerlilik <em>talep</em> edilmeli; otomatik verilmez — cover letter'da belirt<br>
+          • Pasaportun tüm Schengen giriş-çıkış damgaları ile İsviçre vizesinin fotokopisini ekle
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── 5. Cover Letter ─── -->
+    <div class="accordion-item" id="sec-cover">
+      <div class="accordion-header" onclick="toggleSection('sec-cover')">
+        <div class="accordion-left">
+          <div class="accordion-icon">✉️</div>
+          <div>
+            <div class="accordion-title">Cover Letter Şablonu</div>
+            <div class="accordion-subtitle">Cascade paragrafı dahil · İngilizce · Kopyala &amp; düzenle</div>
+          </div>
+        </div>
+        <i class="chevron">⌄</i>
+      </div>
+      <div class="accordion-body">
+        <div class="cover-letter-wrap">
+          <div class="cover-letter-box" id="coverLetterText">[Your City], [Date]
+
+Embassy of Norway / Royal Norwegian Consulate
+(via VFS Global – [City] Application Centre)
+
+Re: Schengen Visa Application – <span class="cover-highlight">[YOUR FULL NAME]</span> – Tourism / Short Stay
+
+Dear Visa Officer,
+
+I am writing to apply for a Schengen visa to visit Norway. The purpose of my trip is tourism, and I plan to travel from <span class="cover-highlight">[DEPARTURE DATE]</span> to <span class="cover-highlight">[RETURN DATE]</span> (<span class="cover-highlight">[X]</span> nights).
+
+TRAVEL PLAN
+During my stay, I intend to visit <span class="cover-highlight">[cities: Oslo, Bergen, etc.]</span>. I have booked accommodation at <span class="cover-highlight">[hotel/accommodation name, address]</span> for the entire duration of my trip. My flight itinerary includes a round-trip reservation from Istanbul to <span class="cover-highlight">[city]</span>.
+
+FINANCIAL MEANS
+I am currently employed at <span class="cover-highlight">[Company Name]</span> as a <span class="cover-highlight">[Job Title]</span> and earn a monthly salary of <span class="cover-highlight">[amount]</span> TRY. I have enclosed six months of bank statements demonstrating sufficient funds for this trip. My employer has granted me annual leave for the period of travel, as confirmed in the enclosed employer letter.
+
+TIES TO HOME COUNTRY
+I am a Turkish citizen permanently residing in Istanbul, Turkey. I have strong ties to my home country through my employment, <span class="cover-highlight">[family/property/other ties]</span>, and I intend to return to Turkey upon the expiration of my visa.
+
+REQUEST FOR MULTIPLE-ENTRY VISA (CASCADE RULE – Article 24(2), Visa Code)
+I wish to draw your attention to the fact that I was previously issued a Schengen visa by Switzerland (validity period: 20 days from <span class="cover-highlight">[December 2025]</span>, authorised stay: 7 days, single entry), which I used in full compliance with all applicable Schengen rules. I did not overstay, I did not engage in any unauthorized activity, and I exited the Schengen area within the validity period. In accordance with Article 24(2)(c) of Regulation (EC) No 810/2009 (the Visa Code), I respectfully request that a multiple-entry visa with a validity of at least one year be issued for this application. Evidence of my previous Schengen visa and the corresponding entry/exit stamps are enclosed as supporting documents.
+
+CONCLUSION
+I have enclosed all required supporting documents as per the official checklist. I am fully committed to complying with the conditions of the Schengen visa and will return to Turkey before the end of my authorized stay.
+
+I kindly request the Consular Officer to consider my application favourably.
+
+Yours sincerely,
+<span class="cover-highlight">[YOUR FULL NAME]</span>
+<span class="cover-highlight">[Passport Number]</span>
+<span class="cover-highlight">[Phone Number]</span>
+<span class="cover-highlight">[Email Address]</span>
+
+Enclosures: [list main documents]</div>
+          <button class="copy-btn" id="copyBtn" onclick="copyLetter()">📋 Cover Letter'ı Kopyala</button>
+        </div>
+        <div class="calc-note" style="margin-top:12px">
+          Sarı ile işaretli alanları kendi bilgilerinle doldur. Cascade paragrafını silme — vize geçerliliğini uzatmak için bu kritik.
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── 6. Dikkat Noktaları ─── -->
+    <div class="accordion-item" id="sec-tips">
+      <div class="accordion-header" onclick="toggleSection('sec-tips')">
+        <div class="accordion-left">
+          <div class="accordion-icon">⚠️</div>
+          <div>
+            <div class="accordion-title">Dikkat Noktaları &amp; Red Sebepleri</div>
+            <div class="accordion-subtitle">Türk başvurucular için ~%32 red oranı — ekstra dikkat şart</div>
+          </div>
+        </div>
+        <i class="chevron">⌄</i>
+      </div>
+      <div class="accordion-body">
+        <div class="warn-list">
+          <div class="warn-card">
+            <div class="wi">⛔</div>
+            <div>
+              <div class="wt">Tarih tutarsızlıkları</div>
+              <div class="wd">Uçuş tarihleri, otel tarihleri ve cover letter tarihleri birebir örtüşmeli. Tek bir tutarsızlık bile redde yol açar.</div>
+            </div>
+          </div>
+          <div class="warn-card">
+            <div class="wi">⛔</div>
+            <div>
+              <div class="wt">İsim yazım farkı</div>
+              <div class="wd">Tüm belgelerdeki isim pasaportla birebir aynı olmalı. Uçuş ve otel rezervasyonlarında Türkçe karakter kullanımına dikkat et.</div>
+            </div>
+          </div>
+          <div class="warn-card">
+            <div class="wi">⛔</div>
+            <div>
+              <div class="wt">Ani büyük banka yatışı</div>
+              <div class="wd">Başvurudan kısa süre önce yapılan büyük nakit girişleri şüpheli görünür. Bakiye en az 3 ay boyunca organik ve tutarlı olmalı.</div>
+            </div>
+          </div>
+          <div class="warn-card yellow">
+            <div class="wi">⚡</div>
+            <div>
+              <div class="wt">Sigortayı vize onayı bekleme</div>
+              <div class="wd">Sigorta başvurudan ÖNCE alınmış ve geçerli olmalı. Vize onaylanırsa alırım diye düşünme — bu red sebebidir.</div>
+            </div>
+          </div>
+          <div class="warn-card yellow">
+            <div class="wi">💼</div>
+            <div>
+              <div class="wt">Zayıf Türkiye'ye dönüş bağları</div>
+              <div class="wd">Büyükelçilik "bu kişi döner mi?" sorusunu sorar. İşveren mektubu, mülkiyet belgesi, aile bağları — bunları belgele.</div>
+            </div>
+          </div>
+          <div class="warn-card green">
+            <div class="wi">✅</div>
+            <div>
+              <div class="wt">Belgeleri fazla ver, eksik değil</div>
+              <div class="wd">Türk başvurucular için %32 red oranı var. Standart listeden fazla belge eklemek asla zarar vermez; yetersiz belge her zaman zarar verir.</div>
+            </div>
+          </div>
+          <div class="warn-card green">
+            <div class="wi">📸</div>
+            <div>
+              <div class="wt">Önceki Schengen vizesini ekle</div>
+              <div class="wd">İsviçre vizesi ve giriş-çıkış damgaları cascade kanıtı. Hem belgeler klasörüne hem de cover letter ekine açıkça belirt.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── 7. VFS Teslim Sırası ─── -->
+    <div class="accordion-item" id="sec-order">
+      <div class="accordion-header" onclick="toggleSection('sec-order')">
+        <div class="accordion-left">
+          <div class="accordion-icon">📁</div>
+          <div>
+            <div class="accordion-title">VFS'e Teslim Sırası</div>
+            <div class="accordion-subtitle">Belgeleri bu sırayla hazırla — görevlinin işini kolaylaştır</div>
+          </div>
+        </div>
+        <i class="chevron">⌄</i>
+      </div>
+      <div class="accordion-body">
+        <div class="calc-note" style="margin-bottom:14px">
+          📌 Zımba kullanma · A4 format · Her belgenin kopyasını da yanına al · Klasörle git
+        </div>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div class="tl-content">
+              <div class="tl-title">1. VFS / Büyükelçilik kontrol listesi (printout)</div>
+              <div class="tl-note">Resmi listesi en üste koy — görevli buradan takip eder</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div class="tl-content">
+              <div class="tl-title">2. Doldurulmuş ve imzalanmış başvuru formu</div>
+              <div class="tl-note">UDI portalından çıktı · İmzasız olursa iade edilir</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div class="tl-content">
+              <div class="tl-title">3. Pasaport (orijinal + kimlik sayfası fotokopisi)</div>
+              <div class="tl-note">Orijinal bırakılır · Tüm vize/damga sayfalarının kopyası da eklenmeli</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div class="tl-content">
+              <div class="tl-title">4. Biyometrik fotoğraf</div>
+              <div class="tl-note">35×45mm · Forma yapıştırılmış + 1 yedek</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div class="tl-content">
+              <div class="tl-title">5. Seyahat sağlık sigortası poliçesi</div>
+              <div class="tl-note">Min. €30.000 · Schengen bölgesi geçerli · Tarihleri kapsamalı</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div class="tl-content">
+              <div class="tl-title">6. Cover letter (kapak mektubu)</div>
+              <div class="tl-note">İngilizce · Cascade paragrafı dahil · İmzalı</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div class="tl-content">
+              <div class="tl-title">7. Banka ekstreleri (3–6 ay)</div>
+              <div class="tl-note">Kaşeli orijinal · En yeni tarih en üstte</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div class="tl-content">
+              <div class="tl-title">8. İşveren mektubu + maaş bordroları</div>
+              <div class="tl-note">Son 3 ay bordro · Kaşe ve imzalı işveren mektubu</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div class="tl-content">
+              <div class="tl-title">9. Konaklama rezervasyonu</div>
+              <div class="tl-note">Tüm gece · İptal edilebilir · Adın pasaportla aynı</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div class="tl-content">
+              <div class="tl-title">10. Uçuş rezervasyonu / itinerary</div>
+              <div class="tl-note">Gidiş-dönüş · Tam bilet gerekmez</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div class="tl-content">
+              <div class="tl-title">11. Nüfus kayıt örneği</div>
+              <div class="tl-note">E-devlet'ten QR kodlu · 6 aydan eski olmamalı</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot" style="background:var(--accent2)"></div><div class="tl-line"></div></div>
+            <div class="tl-content">
+              <div class="tl-title">12. Önceki Schengen vizesi + damgalar (cascade)</div>
+              <div class="tl-note">İsviçre vizesi (Aralık 2025, 7 gün kalış) · Giriş-çıkış damgası sayfaları</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot" style="background:var(--muted)"></div></div>
+            <div class="tl-content">
+              <div class="tl-title">13. Varsa ek destekleyici belgeler</div>
+              <div class="tl-note">Mülkiyet tapusu, aile cüzdanı, diğer bağ kanıtları — en alta</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── 8. Genel Öneriler ─── -->
+    <div class="accordion-item" id="sec-general">
+      <div class="accordion-header" onclick="toggleSection('sec-general')">
+        <div class="accordion-left">
+          <div class="accordion-icon">💡</div>
+          <div>
+            <div class="accordion-title">Genel Başvuru Önerileri</div>
+            <div class="accordion-subtitle">Vize başvurularında evrensel geçerli pratik ipuçları</div>
+          </div>
+        </div>
+        <i class="chevron">⌄</i>
+      </div>
+      <div class="accordion-body">
+        <div class="warn-list">
+          <div class="warn-card green">
+            <div class="wi">📅</div>
+            <div>
+              <div class="wt">Ne kadar süre göstermeli?</div>
+              <div class="wd">Seyahat planın kaç günse o kadar yeterli — gereksiz yere uzun plan yazmak tutarsızlık riski yaratır. Uçuş + otel rezervasyonun kaç günlükse cover letter ve finansal hesaplama da ona göre yapılmalı.</div>
+            </div>
+          </div>
+          <div class="warn-card green">
+            <div class="wi">🔄</div>
+            <div>
+              <div class="wt">İptal edilebilir rezervasyon yap</div>
+              <div class="wd">Uçuş ve oteli red ihtimaline karşı ücretsiz iptal seçeneğiyle rezerve et. Tam bilet almak zorunda değilsin — rezervasyon onayı her zaman yeterli.</div>
+            </div>
+          </div>
+          <div class="warn-card green">
+            <div class="wi">📂</div>
+            <div>
+              <div class="wt">Belgeleri tutarlı sırada sun</div>
+              <div class="wd">VFS görevlisinin işini kolaylaştır: cover letter önce, sonra pasaport, ardından sırasıyla listedeki belgeler. Zımbasız, düzgün A4 klasörle git.</div>
+            </div>
+          </div>
+          <div class="warn-card yellow">
+            <div class="wi">💳</div>
+            <div>
+              <div class="wt">VFS servis ücreti nakit euro</div>
+              <div class="wd">€10 servis ücreti nakit ve euro olarak ödeniyor. Kart veya TL kabul edilmiyor — randevuya euro nakit götür.</div>
+            </div>
+          </div>
+          <div class="warn-card yellow">
+            <div class="wi">🌐</div>
+            <div>
+              <div class="wt">Başvuru takibi</div>
+              <div class="wd">VFS'e bıraktıktan sonra online takip: visa.vfsglobal.com üzerinden referans numaranla durumu görebilirsin. Büyükelçiliği arama — süreyi etkilemez.</div>
+            </div>
+          </div>
+          <div class="warn-card yellow">
+            <div class="wi">🔁</div>
+            <div>
+              <div class="wt">Red gelirse ne yaparsın?</div>
+              <div class="wd">Red kararı gerekçeli gelir — o gerekçeyi doğrudan yanıtlayan ek belgelerle yeniden başvurabilirsin. Aynı eksik belge paketiyle tekrar başvurma. 6–8 hafta önceden başvurman bu yüzden önemli.</div>
+            </div>
+          </div>
+          <div class="warn-card">
+            <div class="wi">🚫</div>
+            <div>
+              <div class="wt">Vize danışmanlarına dikkat</div>
+              <div class="wd">"Garantili vize" vaat eden danışman veya aracılarla çalışma. Vize kararı büyükelçiliğe ait, hiçbir üçüncü taraf garanti veremez. Resmi UDI ve VFS kanallarını kullan.</div>
+            </div>
+          </div>
+          <div class="warn-card">
+            <div class="wi">📵</div>
+            <div>
+              <div class="wt">Sosyal medya / dijital iz</div>
+              <div class="wd">Bazı ülke büyükelçilikleri sosyal medya taraması yapıyor. Başvuru sürecinde seyahat planlarınla çelişen paylaşımlardan kaçın.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /accordion -->
+</div><!-- /container -->
+
+<div class="footer">
+  Norveç Schengen Vize Rehberi · Kişisel kullanım · 2025/2026<br>
+  Resmi kaynak: udi.no · norway.no/turkiye · visa.vfsglobal.com/tur/en/nor
+</div>
+
+<script>
+  // ─── Config defaults (used if config.json fails to load) ───
+  let cfg = {
+    previousVisa: { countryTR: 'İsviçre', monthTR: 'Aralık', year: 2025, validityDays: 20, stayDays: 7 },
+    calculator: { defaultDays: 10, defaultPeople: 1, dailyRequirementNOK: 500 },
+    exchangeRates: { nokToTry: 4.73, eurToNok: 11.20, lastUpdated: '2026-04-15' }
+  };
+
+  // ─── Load config.json ───
+  async function loadConfig() {
+    try {
+      const res = await fetch('config.json');
+      if (res.ok) cfg = await res.json();
+    } catch (_) { /* fallback to defaults */ }
+    applyConfig();
+  }
+
+  function applyConfig() {
+    // Calculator defaults
+    document.getElementById('calcDays').value = cfg.calculator.defaultDays;
+    document.getElementById('calcPeople').value = cfg.calculator.defaultPeople;
+
+    // Exchange rate note
+    const rateNote = document.getElementById('calcRateNote');
+    if (rateNote) {
+      rateNote.textContent =
+        `TL ve Euro değerleri güncel kur üzerinden hesaplanmıştır ` +
+        `(1 EUR = ${(cfg.exchangeRates.nokToTry * cfg.exchangeRates.eurToNok).toFixed(2)} TL · ` +
+        `1 NOK = ${cfg.exchangeRates.nokToTry} TL · ${cfg.exchangeRates.lastUpdated}).`;
+    }
+
+    // Cascade section
+    const v = cfg.previousVisa;
+    const statusEl = document.getElementById('cascadeStatusText');
+    if (statusEl) {
+      statusEl.textContent =
+        `${v.countryTR} Schengen vizesi (${v.monthTR} ${v.year} · ` +
+        `${v.validityDays} gün geçerlilik · ${v.stayDays} gün kalış hakkı) ` +
+        `geçerli kullanıldıysa → 1 yıl çoklu giriş vizesi talep edebilirsin`;
+    }
+    const step1El = document.getElementById('cascadeStep1Text');
+    if (step1El) {
+      step1El.innerHTML =
+        `<strong>1. Schengen Vizesi</strong> — ${v.countryTR} (${v.monthTR} ${v.year}) · Tamamlandı`;
+    }
+
+    calcFinance();
+    initChecks();
+  }
+
+  // ─── Accordion ───
+  function toggleSection(id) {
+    const el = document.getElementById(id);
+    el.classList.toggle('open');
+  }
+
+  // ─── Checklist with localStorage ───
+  const STORAGE_KEY = 'norway-visa-checklist';
+
+  function loadChecks() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch { return {}; }
+  }
+  function saveChecks(state) {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch {}
+  }
+
+  function toggleCheck(li) {
+    const id = li.dataset.id;
+    li.classList.toggle('checked');
+    const state = loadChecks();
+    state[id] = li.classList.contains('checked');
+    saveChecks(state);
+    updateProgress();
+  }
+
+  function updateProgress() {
+    const items = document.querySelectorAll('#checklist li[data-id]');
+    const done = document.querySelectorAll('#checklist li[data-id].checked').length;
+    const total = items.length;
+    document.getElementById('doneCount').textContent = done;
+    document.getElementById('totalCount').textContent = total;
+    document.getElementById('progressFill').style.width = total ? ((done / total) * 100) + '%' : '0%';
+  }
+
+  function initChecks() {
+    const state = loadChecks();
+    document.querySelectorAll('#checklist li[data-id]').forEach(li => {
+      if (state[li.dataset.id]) li.classList.add('checked');
+    });
+    updateProgress();
+  }
+
+  // ─── Finance Calculator ───
+  function calcFinance() {
+    const rate = cfg.calculator.dailyRequirementNOK;
+    const eurToNok = cfg.exchangeRates.eurToNok;
+    const nokToTry = cfg.exchangeRates.nokToTry;
+    const days = parseInt(document.getElementById('calcDays').value) || 0;
+    const people = parseInt(document.getElementById('calcPeople').value) || 1;
+    const min = rate * days * people;
+    const rec = Math.round(min * 1.5);
+    const eur = Math.round(rec / eurToNok);
+    const try_ = Math.round(rec * nokToTry);
+    document.getElementById('resMin').textContent = min.toLocaleString('tr-TR') + ' NOK';
+    document.getElementById('resRec').textContent = rec.toLocaleString('tr-TR') + ' NOK';
+    document.getElementById('resEur').textContent = '~€' + eur.toLocaleString('tr-TR');
+    document.getElementById('resTry').textContent = '~₺' + try_.toLocaleString('tr-TR');
+    document.getElementById('resMinInline').textContent = min.toLocaleString('tr-TR');
+    document.getElementById('resRecInline').textContent = rec.toLocaleString('tr-TR');
+  }
+
+  // ─── Copy cover letter ───
+  function copyLetter() {
+    const box = document.getElementById('coverLetterText');
+    const text = box.innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = document.getElementById('copyBtn');
+      btn.textContent = '✅ Kopyalandı!';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.textContent = '📋 Cover Letter\'ı Kopyala';
+        btn.classList.remove('copied');
+      }, 2500);
+    }).catch(() => {
+      const sel = window.getSelection();
+      const range = document.createRange();
+      range.selectNodeContents(box);
+      sel.removeAllRanges();
+      sel.addRange(range);
+    });
+  }
+
+  // ─── Init ───
+  document.addEventListener('DOMContentLoaded', loadConfig);
+</script>
+</body>
+</html>
