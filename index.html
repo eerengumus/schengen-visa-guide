@@ -431,7 +431,7 @@
             <div class="check-box"><span class="check-tick">✓</span></div>
             <div>
               <div class="check-label">İşveren mektubu</div>
-              <div class="check-note">Pozisyon, maaş ve izin onayı belirtilmeli · Kaşe ve imzalı</div>
+              <div class="check-note">Hangi elçiliğe yazıldığı · Ad, pasaport no, işe başlama tarihi, pozisyon, izin süresi (ücretli/ücretsiz) · İşveren iletişim bilgileri · İmzalayan kişinin adı ve pozisyonu</div>
             </div>
             <span class="tag blue">Çalışan</span>
           </li>
@@ -442,6 +442,22 @@
               <div class="check-note">Orijinal veya kaşeli fotokopi</div>
             </div>
             <span class="tag blue">Çalışan</span>
+          </li>
+          <li onclick="toggleCheck(this)" data-id="c15">
+            <div class="check-box"><span class="check-tick">✓</span></div>
+            <div>
+              <div class="check-label">SGK işe giriş bildirgesi</div>
+              <div class="check-note">Sigortalı İşe Giriş Bildirgesi · e-devlet veya SGK'dan alınabilir</div>
+            </div>
+            <span class="tag">Zorunlu</span>
+          </li>
+          <li onclick="toggleCheck(this)" data-id="c16">
+            <div class="check-box"><span class="check-tick">✓</span></div>
+            <div>
+              <div class="check-label">SGK tescil ve hizmet dökümü</div>
+              <div class="check-note">QR kodlu olmalı · e-devlet üzerinden "SGK Tescil ve Hizmet Dökümü" sorgusu</div>
+            </div>
+            <span class="tag">Zorunlu</span>
           </li>
 
           <div class="section-title" style="margin-top:16px">Cascade İçin Ek Belge</div>
@@ -837,8 +853,8 @@ Enclosures: [list main documents]</div>
           <div class="tl-item">
             <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
             <div class="tl-content">
-              <div class="tl-title">8. İşveren mektubu + maaş bordroları</div>
-              <div class="tl-note">Son 3 ay bordro · Kaşe ve imzalı işveren mektubu</div>
+              <div class="tl-title">8. İşveren mektubu + maaş bordroları + SGK belgeleri</div>
+              <div class="tl-note">Son 3 ay bordro · Kaşe ve imzalı işveren mektubu · SGK işe giriş bildirgesi · QR kodlu SGK tescil ve hizmet dökümü</div>
             </div>
           </div>
           <div class="tl-item">
