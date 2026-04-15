@@ -293,9 +293,12 @@
 
   <!-- Progress -->
   <div class="progress-wrap">
-    <div class="progress-label">
-      <span>Kontrol Listesi İlerleme</span>
-      <span><span class="progress-count" id="doneCount">0</span> / <span id="totalCount">0</span> tamamlandı</span>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+      <div>
+        <div class="progress-label" style="margin-bottom:2px"><span>Kontrol Listesi İlerleme</span></div>
+        <div style="font-size:12px;color:var(--muted)"><span class="progress-count" id="doneCount">0</span> / <span id="totalCount">0</span> madde tamamlandı</div>
+      </div>
+      <div id="progressPercent" style="font-size:36px;font-weight:800;color:var(--accent);line-height:1">%0</div>
     </div>
     <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill"></div></div>
   </div>
@@ -1122,9 +1125,13 @@ Enclosures: [list main documents]</div>
     const items = document.querySelectorAll('#checklist li[data-id]');
     const done = document.querySelectorAll('#checklist li[data-id].checked').length;
     const total = items.length;
+    const pct = total ? Math.round((done / total) * 100) : 0;
     document.getElementById('doneCount').textContent = done;
     document.getElementById('totalCount').textContent = total;
-    document.getElementById('progressFill').style.width = total ? ((done / total) * 100) + '%' : '0%';
+    document.getElementById('progressFill').style.width = pct + '%';
+    const pctEl = document.getElementById('progressPercent');
+    pctEl.textContent = '%' + pct;
+    pctEl.style.color = pct === 100 ? 'var(--green)' : pct >= 50 ? 'var(--accent)' : 'var(--yellow)';
   }
 
   function initChecks() {
