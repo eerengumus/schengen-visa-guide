@@ -229,6 +229,49 @@
     /* ─── Footer ─── */
     .footer { text-align: center; padding: 24px; color: var(--muted); font-size: 12px; border-top: 1px solid var(--border); margin-top: 32px; }
 
+    /* ─── Appointment Timeline ─── */
+    .appt-banner {
+      background: linear-gradient(135deg, rgba(239,68,68,.12), rgba(245,158,11,.08));
+      border: 1px solid rgba(239,68,68,.4);
+      border-radius: var(--radius); padding: 18px 20px;
+      display: flex; align-items: center; gap: 16px; margin-bottom: 12px;
+    }
+    .appt-banner.ok { background: linear-gradient(135deg, rgba(79,142,247,.1), rgba(124,106,247,.08)); border-color: rgba(79,142,247,.35); }
+    .appt-icon { font-size: 32px; }
+    .appt-label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+    .appt-date-text { font-size: 17px; font-weight: 700; margin-top: 2px; }
+    .appt-countdown { font-size: 22px; font-weight: 800; margin-left: auto; white-space: nowrap; }
+    .appt-countdown.urgent { color: var(--red); }
+    .appt-countdown.ok { color: var(--accent); }
+    .task-timeline { display: flex; flex-direction: column; gap: 0; margin-top: 4px; }
+    .tt-item { display: flex; gap: 14px; padding-bottom: 14px; }
+    .tt-left { display: flex; flex-direction: column; align-items: center; }
+    .tt-dot { width: 10px; height: 10px; border-radius: 99px; background: var(--muted); min-width: 10px; margin-top: 5px; }
+    .tt-dot.urgent { background: var(--red); box-shadow: 0 0 0 3px rgba(239,68,68,.2); }
+    .tt-dot.done { background: var(--green); }
+    .tt-dot.accent { background: var(--accent); }
+    .tt-line { width: 2px; flex: 1; background: var(--border); margin-top: 4px; }
+    .tt-item:last-child .tt-line { display: none; }
+    .tt-date { font-size: 11px; font-weight: 700; color: var(--muted); min-width: 60px; margin-top: 3px; }
+    .tt-title { font-size: 13px; font-weight: 600; }
+    .tt-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+    .tt-badge { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 99px; margin-left: 6px; background: rgba(239,68,68,.15); color: var(--red); border: 1px solid rgba(239,68,68,.25); }
+    .tt-badge.green { background: rgba(34,197,94,.12); color: var(--green); border-color: rgba(34,197,94,.3); }
+    .tt-badge.blue { background: rgba(79,142,247,.12); color: var(--accent); border-color: rgba(79,142,247,.3); }
+    .post-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 10px; }
+    @media(max-width:500px){ .post-grid { grid-template-columns: 1fr; } }
+    .post-card { background: var(--surface2); border-radius: 10px; padding: 14px; border: 1px solid var(--border); text-align: center; }
+    .post-card .pc-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; margin-bottom: 6px; }
+    .post-card .pc-val { font-size: 15px; font-weight: 700; }
+    .post-card.soon { border-color: rgba(245,158,11,.3); }
+    .post-card.soon .pc-val { color: var(--yellow); }
+    .post-card.safe { border-color: rgba(34,197,94,.3); }
+    .post-card.safe .pc-val { color: var(--green); }
+    .timeline-section { margin-bottom: 20px; }
+    .timeline-section .section-hdr { font-size: 13px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+    .tl-panel { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; margin-bottom: 10px; }
+    .tl-panel-title { font-size: 13px; font-weight: 700; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+
     hr { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
     .section-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin: 16px 0 10px; }
   </style>
@@ -255,6 +298,31 @@
       <span><span class="progress-count" id="doneCount">0</span> / <span id="totalCount">0</span> tamamlandı</span>
     </div>
     <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill"></div></div>
+  </div>
+
+  <!-- ─── Appointment Timeline ─── -->
+  <div class="timeline-section" id="timelineSection" style="display:none">
+    <div class="appt-banner" id="apptBanner">
+      <div class="appt-icon">📅</div>
+      <div>
+        <div class="appt-label">VFS Randevusu</div>
+        <div class="appt-date-text" id="apptDateText">—</div>
+      </div>
+      <div class="appt-countdown" id="apptCountdown">—</div>
+    </div>
+
+    <div class="tl-panel">
+      <div class="tl-panel-title">⏰ Randevuya Kadar Yapılacaklar</div>
+      <div class="task-timeline" id="preApptTimeline"></div>
+    </div>
+
+    <div class="tl-panel">
+      <div class="tl-panel-title">🗺️ Randevu Sonrası Tahmini Süreç</div>
+      <div class="post-grid" id="postApptGrid"></div>
+      <div class="calc-note" style="margin-top:12px">
+        Gidiş tarihin belli olmadığı için "en erken" ve "güvenli" aralık gösterilmektedir. Pasaport elindeyken seyahat tarihini netleştir.
+      </div>
+    </div>
   </div>
 
   <div class="accordion">
@@ -939,6 +1007,89 @@ Enclosures: [list main documents]</div>
 
     calcFinance();
     initChecks();
+    if (cfg.vfsAppointmentDate) renderTimeline(cfg.vfsAppointmentDate);
+  }
+
+  // ─── Appointment Timeline ───
+  function renderTimeline(dateStr) {
+    const apptDate = new Date(dateStr + 'T00:00:00');
+    const today = new Date(); today.setHours(0,0,0,0);
+    const daysToAppt = Math.round((apptDate - today) / 86400000);
+
+    document.getElementById('timelineSection').style.display = 'block';
+
+    // Banner
+    const banner = document.getElementById('apptBanner');
+    const fmt = d => d.toLocaleDateString('tr-TR', { day:'numeric', month:'long', year:'numeric' });
+    document.getElementById('apptDateText').textContent = fmt(apptDate);
+    const cdEl = document.getElementById('apptCountdown');
+    if (daysToAppt < 0) {
+      cdEl.textContent = 'Geçti';
+      cdEl.className = 'appt-countdown ok';
+      banner.className = 'appt-banner ok';
+    } else if (daysToAppt === 0) {
+      cdEl.textContent = 'BUGÜN! 🔴';
+      cdEl.className = 'appt-countdown urgent';
+    } else if (daysToAppt <= 7) {
+      cdEl.textContent = daysToAppt + ' GÜN KALDI ⚠️';
+      cdEl.className = 'appt-countdown urgent';
+    } else {
+      cdEl.textContent = daysToAppt + ' gün kaldı';
+      cdEl.className = 'appt-countdown ok';
+      banner.className = 'appt-banner ok';
+    }
+
+    // Pre-appointment tasks
+    const addDay = (d, n) => { const r = new Date(d); r.setDate(r.getDate() + n); return r; };
+    const daysBetween = (a, b) => Math.round((b - a) / 86400000);
+    const fmtShort = d => d.toLocaleDateString('tr-TR', { day:'numeric', month:'short' });
+
+    const preTasks = [
+      { date: today, title: 'Sigorta satın al', sub: 'Min. €30.000 · Schengen geçerli · Randevudan önce olmalı', urgency: daysToAppt <= 3 ? 'urgent' : 'accent' },
+      { date: today, title: 'Banka ekstresi çıkar', sub: 'Banka kaşeli · Son 6 ay (Ekim 2025 – Nisan 2026)', urgency: daysToAppt <= 3 ? 'urgent' : 'accent' },
+      { date: today, title: 'Otel rezervasyonu yap', sub: 'Ücretsiz iptalli · Tüm geceleri kapsamalı', urgency: daysToAppt <= 3 ? 'urgent' : 'accent' },
+      { date: today, title: 'Uçuş rezervasyonu yap', sub: 'Tam bilet almak zorunda değilsin, rezervasyon yeterli', urgency: daysToAppt <= 3 ? 'urgent' : 'accent' },
+      { date: addDay(apptDate, -2), title: 'Cover letter hazırla ve yazdır', sub: 'Cascade paragrafı dahil · İmzalı', urgency: 'accent' },
+      { date: addDay(apptDate, -1), title: 'Tüm belgeleri klasörle', sub: 'Sırasına göre · Zımbasız · Kopyalar dahil', urgency: 'accent' },
+      { date: addDay(apptDate, -1), title: 'Euro nakit hazırla', sub: '€10 VFS servis ücreti · Nakit zorunlu', urgency: 'accent' },
+      { date: apptDate, title: 'VFS Randevusu 📅', sub: 'Pasaport teslimi · Parmak izi · Belgeler', urgency: 'done' },
+    ];
+
+    const tlEl = document.getElementById('preApptTimeline');
+    tlEl.innerHTML = preTasks.map((t, i) => {
+      const rem = daysBetween(today, t.date);
+      const badge = rem <= 0
+        ? `<span class="tt-badge" style="background:rgba(239,68,68,.15);color:var(--red);border-color:rgba(239,68,68,.25)">BUGÜN</span>`
+        : rem === 1 ? `<span class="tt-badge">yarın</span>`
+        : rem > 1 ? `<span class="tt-badge blue">${rem} gün sonra</span>` : '';
+      return `<div class="tt-item">
+        <div class="tt-left"><div class="tt-dot ${t.urgency}"></div>${i < preTasks.length-1 ? '<div class="tt-line"></div>' : ''}</div>
+        <div style="flex:1;padding-top:2px">
+          <div class="tt-date">${fmtShort(t.date)}</div>
+          <div class="tt-title">${t.title}${badge}</div>
+          <div class="tt-sub">${t.sub}</div>
+        </div>
+      </div>`;
+    }).join('');
+
+    // Post-appointment estimates
+    const earliest  = addDay(apptDate, 19); // 15 cal + 4 transit
+    const recommend = addDay(apptDate, 25);
+    const safe      = addDay(apptDate, 32);
+    const grid = document.getElementById('postApptGrid');
+    grid.innerHTML = `
+      <div class="post-card">
+        <div class="pc-label">Pasaport hazır (en erken)</div>
+        <div class="pc-val">${fmtShort(earliest)}</div>
+      </div>
+      <div class="post-card soon">
+        <div class="pc-label">Önerilen min. gidiş</div>
+        <div class="pc-val">${fmtShort(recommend)}</div>
+      </div>
+      <div class="post-card safe">
+        <div class="pc-label">Güvenli gidiş tarihi</div>
+        <div class="pc-val">${fmtShort(safe)}</div>
+      </div>`;
   }
 
   // ─── Accordion ───
