@@ -304,12 +304,9 @@
   <div class="timeline-section" id="timelineSection" style="display:none">
     <div class="appt-banner" id="apptBanner">
       <div class="appt-icon">📅</div>
-      <div style="flex:1">
-        <div class="appt-label">VFS Randevu Tarihi</div>
+      <div>
+        <div class="appt-label">VFS Randevusu</div>
         <div class="appt-date-text" id="apptDateText">—</div>
-        <input type="date" id="apptDateInput"
-          style="margin-top:6px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:6px;padding:5px 10px;color:#fff;font-size:13px;outline:none;cursor:pointer"
-          oninput="onApptDateChange(this.value)" />
       </div>
       <div class="appt-countdown" id="apptCountdown">—</div>
     </div>
@@ -1011,24 +1008,13 @@ Enclosures: [list main documents]</div>
 
     calcFinance();
     initChecks();
-    const savedDate = (() => { try { return localStorage.getItem('vfs-appt-date'); } catch(_){} })();
-    const apptDate = savedDate || cfg.vfsAppointmentDate;
-    if (apptDate) renderTimeline(apptDate);
-  }
-
-  // ─── Appointment Date input handler ───
-  function onApptDateChange(val) {
-    if (!val) return;
-    try { localStorage.setItem('vfs-appt-date', val); } catch(_) {}
-    renderTimeline(val);
+    if (cfg.vfsAppointmentDate) renderTimeline(cfg.vfsAppointmentDate);
   }
 
   // ─── Appointment Timeline ───
   function renderTimeline(dateStr) {
     const apptDate = new Date(dateStr + 'T00:00:00');
     const today = new Date(); today.setHours(0,0,0,0);
-    const inputEl = document.getElementById('apptDateInput');
-    if (inputEl) inputEl.value = dateStr;
     const daysToAppt = Math.round((apptDate - today) / 86400000);
 
     document.getElementById('timelineSection').style.display = 'block';
