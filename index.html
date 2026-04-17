@@ -348,21 +348,13 @@
         <i class="chevron">⌄</i>
       </div>
       <div class="accordion-body">
-        <div class="section-title">Zorunlu — Herkes</div>
+        <div class="section-title">Zorunlu — Herkes (Resmi Bölüm 1)</div>
         <ul class="checklist" id="checklist">
           <li onclick="toggleCheck(this)" data-id="c1">
             <div class="check-box"><span class="check-tick">✓</span></div>
             <div>
               <div class="check-label">Geçerli pasaport</div>
-              <div class="check-note">Son 10 yıl içinde çıkarılmış · Dönüşten en az 3 ay fazla geçerli · Boş en az 2 sayfa</div>
-            </div>
-            <span class="tag">Zorunlu</span>
-          </li>
-          <li onclick="toggleCheck(this)" data-id="c2">
-            <div class="check-box"><span class="check-tick">✓</span></div>
-            <div>
-              <div class="check-label">Biyometrik fotoğraf</div>
-              <div class="check-note">35×45mm · Renkli · Son 6 ay içinde çekilmiş · Beyaz arka plan</div>
+              <div class="check-note">Son 10 yıl içinde çıkarılmış · Dönüşten en az 3 ay fazla geçerli · Boş en az 2 sayfa · Kimlik sayfası ve kullanılmış sayfaların fotokopisi de ekle</div>
             </div>
             <span class="tag">Zorunlu</span>
           </li>
@@ -370,23 +362,15 @@
             <div class="check-box"><span class="check-tick">✓</span></div>
             <div>
               <div class="check-label">Schengen başvuru formu (imzalı)</div>
-              <div class="check-note">UDI portalından doldurulup çıktısı alınmış ve imzalanmış</div>
+              <div class="check-note">UDI portalından doldurulup çıktısı alınmış · İmzalı · Biyometrik fotoğraf ön sayfaya yapıştırılmış (zımba kullanma)</div>
             </div>
             <span class="tag">Zorunlu</span>
           </li>
-          <li onclick="toggleCheck(this)" data-id="c4">
+          <li onclick="toggleCheck(this)" data-id="c2">
             <div class="check-box"><span class="check-tick">✓</span></div>
             <div>
-              <div class="check-label">Seyahat sağlık sigortası</div>
-              <div class="check-note">Min. €30.000 tıbbi kapsam · Tüm Schengen bölgesi geçerli · Başvuru öncesi satın alınmalı</div>
-            </div>
-            <span class="tag">Zorunlu</span>
-          </li>
-          <li onclick="toggleCheck(this)" data-id="c5">
-            <div class="check-box"><span class="check-tick">✓</span></div>
-            <div>
-              <div class="check-label">Banka ekstreleri (3–6 ay)</div>
-              <div class="check-note">Banka kaşeli orijinal · A4 format · Son 1 ay içinde çıkarılmış · Düzenli maaş yatışları görünmeli</div>
+              <div class="check-label">Biyometrik fotoğraf</div>
+              <div class="check-note">35×45mm · Renkli · Son 6 ay içinde çekilmiş · Beyaz arka plan · Forma yapıştırılacak + 1 yedek hazırla</div>
             </div>
             <span class="tag">Zorunlu</span>
           </li>
@@ -394,15 +378,39 @@
             <div class="check-box"><span class="check-tick">✓</span></div>
             <div>
               <div class="check-label">Nüfus kayıt örneği</div>
-              <div class="check-note">E-devlet'ten QR kodlu · 6 aydan eski olmamalı</div>
+              <div class="check-note">E-devlet veya Nüfus Müdürlüğü · QR kodlu · Tam tekmil · 6 aydan eski olmamalı</div>
             </div>
             <span class="tag">Zorunlu</span>
           </li>
-          <li onclick="toggleCheck(this)" data-id="c7">
+          <li onclick="toggleCheck(this)" data-id="c5">
             <div class="check-box"><span class="check-tick">✓</span></div>
             <div>
-              <div class="check-label">Cover letter (kapak mektubu)</div>
-              <div class="check-note">İngilizce · Maks. 1 sayfa · Cascade paragrafı dahil</div>
+              <div class="check-label">Banka ekstreleri (son 3 ay)</div>
+              <div class="check-note">Banka kaşeli orijinal · A4 format · Son 1 ay içinde çıkarılmış · Düzenli maaş yatışları görünmeli · Bordro ile birlikte "fon kanıtı" oluşturur</div>
+            </div>
+            <span class="tag">Zorunlu</span>
+          </li>
+          <li onclick="toggleCheck(this)" data-id="c12">
+            <div class="check-box"><span class="check-tick">✓</span></div>
+            <div>
+              <div class="check-label">Son 3 aylık maaş bordroları</div>
+              <div class="check-note">Orijinal veya kaşeli fotokopi · Düzenli gelir kanıtı · Banka ekstresi ile birlikte "fon kanıtı" oluşturur</div>
+            </div>
+            <span class="tag">Zorunlu</span>
+          </li>
+          <li onclick="toggleCheck(this)" data-id="c9">
+            <div class="check-box"><span class="check-tick">✓</span></div>
+            <div>
+              <div class="check-label">Uçuş rezervasyonu / itinerary</div>
+              <div class="check-note">Bilet almak zorunda değilsin · Rezervasyon onayı yeterli · Giriş-çıkış tarihleri belirtilmeli · Vize onayına kadar tam bilet alma</div>
+            </div>
+            <span class="tag blue">Rezervasyon OK</span>
+          </li>
+          <li onclick="toggleCheck(this)" data-id="c4">
+            <div class="check-box"><span class="check-tick">✓</span></div>
+            <div>
+              <div class="check-label">Seyahat sağlık sigortası</div>
+              <div class="check-note">Min. €30.000 tıbbi kapsam · Tüm Schengen bölgesi geçerli · Başvuru öncesi satın alınmalı · Orijinal poliçe</div>
             </div>
             <span class="tag">Zorunlu</span>
           </li>
@@ -414,14 +422,6 @@
             </div>
             <span class="tag">Zorunlu</span>
           </li>
-          <li onclick="toggleCheck(this)" data-id="c9">
-            <div class="check-box"><span class="check-tick">✓</span></div>
-            <div>
-              <div class="check-label">Uçuş rezervasyonu</div>
-              <div class="check-note">Bilet almak zorunda değilsin · Rezervasyon onayı yeterli · Giriş-çıkış tarihleri belirtilmeli</div>
-            </div>
-            <span class="tag blue">Rezervasyon OK</span>
-          </li>
           <li onclick="toggleCheck(this)" data-id="c10">
             <div class="check-box"><span class="check-tick">✓</span></div>
             <div>
@@ -431,20 +431,12 @@
             <span class="tag">Zorunlu</span>
           </li>
 
-          <div class="section-title" style="margin-top:16px">Çalışan İçin Ek Belgeler</div>
+          <div class="section-title" style="margin-top:16px">Çalışan İçin Ek Belgeler (Resmi Bölüm 3a)</div>
           <li onclick="toggleCheck(this)" data-id="c11">
             <div class="check-box"><span class="check-tick">✓</span></div>
             <div>
               <div class="check-label">İşveren mektubu</div>
               <div class="check-note">Hangi elçiliğe yazıldığı · Ad, pasaport no, işe başlama tarihi, pozisyon, izin süresi (ücretli/ücretsiz) · İşveren iletişim bilgileri · İmzalayan kişinin adı ve pozisyonu</div>
-            </div>
-            <span class="tag blue">Çalışan</span>
-          </li>
-          <li onclick="toggleCheck(this)" data-id="c12">
-            <div class="check-box"><span class="check-tick">✓</span></div>
-            <div>
-              <div class="check-label">Son 3 aylık maaş bordroları</div>
-              <div class="check-note">Orijinal veya kaşeli fotokopi</div>
             </div>
             <span class="tag blue">Çalışan</span>
           </li>
@@ -454,7 +446,7 @@
               <div class="check-label">SGK işe giriş bildirgesi</div>
               <div class="check-note">Sigortalı İşe Giriş Bildirgesi · e-devlet veya SGK'dan alınabilir</div>
             </div>
-            <span class="tag">Zorunlu</span>
+            <span class="tag blue">Çalışan</span>
           </li>
           <li onclick="toggleCheck(this)" data-id="c16">
             <div class="check-box"><span class="check-tick">✓</span></div>
@@ -462,7 +454,7 @@
               <div class="check-label">SGK tescil ve hizmet dökümü</div>
               <div class="check-note">QR kodlu olmalı · e-devlet üzerinden "SGK Tescil ve Hizmet Dökümü" sorgusu</div>
             </div>
-            <span class="tag">Zorunlu</span>
+            <span class="tag blue">Çalışan</span>
           </li>
 
           <div class="section-title" style="margin-top:16px">Cascade İçin Ek Belge</div>
@@ -481,6 +473,16 @@
               <div class="check-note">İsviçre'ye giriş-çıkış yaptığını kanıtlayan pasaport sayfaları</div>
             </div>
             <span class="tag green">Cascade</span>
+          </li>
+
+          <div class="section-title" style="margin-top:16px">Tavsiye Edilen (Resmi Listede Yok)</div>
+          <li onclick="toggleCheck(this)" data-id="c7">
+            <div class="check-box"><span class="check-tick">✓</span></div>
+            <div>
+              <div class="check-label">Cover letter (kapak mektubu)</div>
+              <div class="check-note">İngilizce · Maks. 1 sayfa · Cascade paragrafı dahil · Resmi zorunlu değil ama başvurunu güçlendirir</div>
+            </div>
+            <span class="tag blue">Tavsiye</span>
           </li>
         </ul>
       </div>
@@ -795,8 +797,8 @@ Enclosures: [list main documents]</div>
         <div class="accordion-left">
           <div class="accordion-icon">📁</div>
           <div>
-            <div class="accordion-title">VFS'e Teslim Sırası</div>
-            <div class="accordion-subtitle">Belgeleri bu sırayla hazırla — görevlinin işini kolaylaştır</div>
+            <div class="accordion-title">VFS'e Teslim Sırası (Resmi Kontrol Listesi)</div>
+            <div class="accordion-subtitle">Norveç Büyükelçiliği resmi checklist sırasına göre hazırla</div>
           </div>
         </div>
         <i class="chevron">⌄</i>
@@ -816,85 +818,78 @@ Enclosures: [list main documents]</div>
           <div class="tl-item">
             <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
             <div class="tl-content">
-              <div class="tl-title">2. Doldurulmuş ve imzalanmış başvuru formu</div>
-              <div class="tl-note">UDI portalından çıktı · İmzasız olursa iade edilir</div>
+              <div class="tl-title">2. Pasaport (orijinal + fotokopiler)</div>
+              <div class="tl-note">Orijinal bırakılır · Kimlik sayfası + tüm kullanılmış/damgalı/vizeli sayfaların fotokopisi eklenir (cascade için)</div>
             </div>
           </div>
           <div class="tl-item">
             <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
             <div class="tl-content">
-              <div class="tl-title">3. Pasaport (orijinal + kimlik sayfası fotokopisi)</div>
-              <div class="tl-note">Orijinal bırakılır · Tüm vize/damga sayfalarının kopyası da eklenmeli</div>
+              <div class="tl-title">3. Başvuru formu + biyometrik fotoğraf</div>
+              <div class="tl-note">UDI portalından çıktı · İmzalı · Biyometrik fotoğraf (35×45mm) forma yapıştırılmış + 1 yedek</div>
             </div>
           </div>
           <div class="tl-item">
             <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
             <div class="tl-content">
-              <div class="tl-title">4. Biyometrik fotoğraf</div>
-              <div class="tl-note">35×45mm · Forma yapıştırılmış + 1 yedek</div>
+              <div class="tl-title">4. Nüfus kayıt örneği</div>
+              <div class="tl-note">E-devlet'ten QR kodlu · 6 aydan eski olmamalı · Resmi listede Bölüm 1'de yer alır</div>
             </div>
           </div>
           <div class="tl-item">
             <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
             <div class="tl-content">
-              <div class="tl-title">5. Seyahat sağlık sigortası poliçesi</div>
-              <div class="tl-note">Min. €30.000 · Schengen bölgesi geçerli · Tarihleri kapsamalı</div>
+              <div class="tl-title">5. Fon kanıtı: Banka ekstreleri + maaş bordroları</div>
+              <div class="tl-note">Son 3 ay kaşeli banka ekstresi + son 3 ay maaş bordrosu birlikte · Resmi liste ikisini de "yeterli fon" için zorunlu tutar</div>
             </div>
           </div>
           <div class="tl-item">
             <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
             <div class="tl-content">
-              <div class="tl-title">6. Cover letter (kapak mektubu)</div>
-              <div class="tl-note">İngilizce · Cascade paragrafı dahil · İmzalı</div>
+              <div class="tl-title">6. Uçuş rezervasyonu / itinerary</div>
+              <div class="tl-note">Gidiş-dönüş · Tam bilet gerekmez · Seyahat planı bölümünde</div>
             </div>
           </div>
           <div class="tl-item">
             <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
             <div class="tl-content">
-              <div class="tl-title">7. Banka ekstreleri (3–6 ay)</div>
-              <div class="tl-note">Kaşeli orijinal · En yeni tarih en üstte</div>
+              <div class="tl-title">7. Seyahat sağlık sigortası poliçesi</div>
+              <div class="tl-note">Min. €30.000 · Schengen bölgesi geçerli · Tüm seyahat tarihlerini kapsamalı</div>
             </div>
           </div>
           <div class="tl-item">
             <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
             <div class="tl-content">
-              <div class="tl-title">8. İşveren mektubu + maaş bordroları + SGK belgeleri</div>
-              <div class="tl-note">Son 3 ay bordro · Kaşe ve imzalı işveren mektubu · SGK işe giriş bildirgesi · QR kodlu SGK tescil ve hizmet dökümü</div>
+              <div class="tl-title">8. Konaklama rezervasyonu</div>
+              <div class="tl-note">Tüm geceleri kapsamalı · İptal edilebilir · Adın pasaportla aynı</div>
             </div>
           </div>
           <div class="tl-item">
             <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
             <div class="tl-content">
-              <div class="tl-title">9. Konaklama rezervasyonu</div>
-              <div class="tl-note">Tüm gece · İptal edilebilir · Adın pasaportla aynı</div>
+              <div class="tl-title">9. İşveren mektubu</div>
+              <div class="tl-note">İngilizce · Kaşeli ve imzalı · Pozisyon, maaş, işe başlama tarihi, izin onayı (Bölüm 3a)</div>
             </div>
           </div>
           <div class="tl-item">
             <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
             <div class="tl-content">
-              <div class="tl-title">10. Uçuş rezervasyonu / itinerary</div>
-              <div class="tl-note">Gidiş-dönüş · Tam bilet gerekmez</div>
-            </div>
-          </div>
-          <div class="tl-item">
-            <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
-            <div class="tl-content">
-              <div class="tl-title">11. Nüfus kayıt örneği</div>
-              <div class="tl-note">E-devlet'ten QR kodlu · 6 aydan eski olmamalı</div>
+              <div class="tl-title">10. SGK belgeleri</div>
+              <div class="tl-note">SGK işe giriş bildirgesi + QR kodlu SGK tescil ve hizmet dökümü (Bölüm 3a)</div>
             </div>
           </div>
           <div class="tl-item">
             <div class="tl-left"><div class="tl-dot" style="background:var(--accent2)"></div><div class="tl-line"></div></div>
             <div class="tl-content">
-              <div class="tl-title">12. Önceki Schengen vizesi + damgalar (cascade)</div>
-              <div class="tl-note">İsviçre vizesi (Aralık 2025, 7 gün kalış) · Giriş-çıkış damgası sayfaları</div>
+              <div class="tl-title">11. Cover letter (opsiyonel tavsiye)</div>
+              <div class="tl-note">Resmi listede değil ama güçlü bir destek · İngilizce · Cascade paragrafı ve kısa seyahat özeti · İmzalı</div>
             </div>
           </div>
           <div class="tl-item">
             <div class="tl-left"><div class="tl-dot" style="background:var(--muted)"></div></div>
             <div class="tl-content">
-              <div class="tl-title">13. Varsa ek destekleyici belgeler</div>
-              <div class="tl-note">Mülkiyet tapusu, aile cüzdanı, diğer bağ kanıtları — en alta</div>
+              <div class="tl-title">12. Ek destekleyici belgeler</div>
+              <div class="tl-note">Mülkiyet tapusu, aile cüzdanı, önceki Schengen vize fotokopileri — en alta</div>
             </div>
           </div>
         </div>
